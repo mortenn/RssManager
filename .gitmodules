@@ -1,0 +1,6 @@
+[submodule "lib/KrameWork"]
+	path = lib/KrameWork
+	url = git@github.com:mortenn/KrameWork.git
+[submodule "lib/PHP-Transmission-Class"]
+	path = lib/PHP-Transmission-Class
+	url = https://github.com/brycied00d/PHP-Transmission-Class.git
