@@ -1,0 +1,13 @@
+.feed-url {
+	font-weight: italic;
+	color: gray;
+}
+.feed-new-torrent {
+	color: green;
+	font-weight: bold;
+}
+.feed-added-torrent {
+}
+.feed-skipped-torrent {
+	color: silver;
+}
