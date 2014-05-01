@@ -9,7 +9,6 @@
 
 	$system = new KrameSystem(KW_DEFAULT_FLAGS & ~KW_ENABLE_SESSIONS);
 	$system->getErrorHandler()->addEmailOutputRecipient('morten@runsafe.no');
-	//$system->addAutoLoadPath('include');
 	$system->addAutoLoadPath('pages');
 	$system->addAutoLoadPath('dal');
 	$system->addAutoLoadPath('dto');
