@@ -19,10 +19,15 @@
 			$site->page = 'feeds';
 			$site->content = new EditFeed($schema);
 			break;
+		case '/toggle':
+			if(isset($_GET['name']))
+				$schema->feeds->getFeed($_GET['name'])->toggle();
+			redirect('feeds');
+			break;
 		case '/deactivate':
 			if(isset($_GET['name']))
 				$schema->feeds->getFeed($_GET['name'])->deactivate();
-			redirect('/');
+			redirect('feeds');
 			break;
 		case '/inbox':
 			$site->title = 'New torrents from RSS';

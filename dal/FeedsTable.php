@@ -8,6 +8,7 @@
 			$this->loadInactive = $this->db->prepare('SELECT * FROM `feeds` WHERE `active`=0');
 			$this->deactivate = $this->db->prepare('UPDATE `feeds` SET `active`=0 WHERE `name`=:name');
 			$this->activate = $this->db->prepare('UPDATE `feeds` SET `active`=1 WHERE `name`=:name');
+			$this->autostart = $this->db->prepare('UPDATE `feeds` SET `autostart`=:value WHERE `name`=:name');
 			$this->save = $this->db->prepare('
 INSERT INTO feeds (`name`,`uri`,`term`,`active`) VALUES (:name,:uri,:term,:active)
 	ON DUPLICATE KEY UPDATE `term`=VALUES(`term`),`uri`=VALUES(`uri`),`active`=VALUES(`active`)');
@@ -55,7 +56,7 @@ INSERT INTO feeds (`name`,`uri`,`term`,`active`) VALUES (:name,:uri,:term,:activ
 
 		public function getVersion()
 		{
-			return 2;
+			return 3;
 		}
 
 		public function getQueries()
@@ -69,7 +70,8 @@ CREATE TABLE `feeds` (
 	PRIMARY KEY(`name`)
 )'
 				),
-				2 => array('ALTER TABLE `feeds` ADD COLUMN (`term` VARCHAR(100))')
+				2 => array('ALTER TABLE `feeds` ADD COLUMN (`term` VARCHAR(100))'),
+				3 => array('ALTER TABLE `feeds` ADD COLUMN (`autostart` BOOL)')
 			);
 		}
 	}

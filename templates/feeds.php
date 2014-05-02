@@ -35,6 +35,7 @@
 				</div>
 				<div class="col-md-2">
 					<a class="btn btn-xs btn-primary" href="edit?name=<?php echo urlencode($feed->name); ?>">Edit</a>
+					<a class="btn btn-xs btn-<?php echo $feed->autostart ? 'success' : 'warning'; ?>" href="toggle?name=<?php echo urlencode($feed->name); ?>">Auto</a>
 					<a class="btn btn-xs btn-danger" href="deactivate?name=<?php echo urlencode($feed->name); ?>">Deactivate</a>
 				</div>
 			</div>

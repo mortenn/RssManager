@@ -26,6 +26,13 @@
 			$this->dal->activate->execute();
 		}
 
+		public function toggle()
+		{
+			$this->dal->autostart->name = $this->name;
+			$this->dal->autostart->value = !$this->autostart;
+			$this->dal->autostart->execute();
+		}
+
 		public function save()
 		{
 			$this->uri = sprintf(RSS_URL, urlencode($this->term));

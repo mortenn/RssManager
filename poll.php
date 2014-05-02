@@ -2,25 +2,30 @@
 <?php
 	require('bootstrap.php');
 	$active = array();
+	$autostart = array();
 	$uri = array();
 	$feeds = $schema->feeds->getActiveFeeds();
 	foreach($feeds as $f)
 	{
 		$f->scrape();
 		$active[$f->name] = true;
+		$autostart[$f->name] = $f->autostart;
 	}
 
 	if($autoadd)
 	{
 		foreach($schema->torrents->getNew() as $torrent)
 		{
-			try
+			if($autostart[$torrent->feed])
 			{
-				echo 'Adding torrent for '.$torrent->title.': '.($torrent->start() ? 'OK' : 'Error');
-			}
-			catch(Exception $e)
-			{
-				echo $e->getMessage();
+				try
+				{
+					echo 'Adding torrent for '.$torrent->title.': '.($torrent->start() ? 'OK' : 'Error');
+				}
+				catch(Exception $e)
+				{
+					echo $e->getMessage();
+				}
 			}
 		}
 	}
