@@ -39,6 +39,14 @@
 			$site->page = 'watch';
 			$site->content = new WatchList($schema);
 			break;
+		case '/watched':
+			if(isset($_GET['name']))
+			{
+				$torrent = $schema->torrents->getTorrent($_GET['name']);
+				$torrent->watched();
+			}
+			redirect('watch');
+			break;
 	}
 	$site->menu = array(
 		'feeds' => 'Active feeds',
