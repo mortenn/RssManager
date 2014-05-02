@@ -34,8 +34,8 @@
 					</div>
 				</div>
 				<div class="col-md-2">
-					<a class="btn btn-xs btn-primary" href="/edit.php?name=<?php echo urlencode($feed->name); ?>">Edit</a>
-					<a class="btn btn-xs btn-danger" href="/?deactivate=<?php echo urlencode($feed->name); ?>">Deactivate</a>
+					<a class="btn btn-xs btn-primary" href="edit?name=<?php echo urlencode($feed->name); ?>">Edit</a>
+					<a class="btn btn-xs btn-danger" href="deactivate?name=<?php echo urlencode($feed->name); ?>">Deactivate</a>
 				</div>
 			</div>
 		</li>

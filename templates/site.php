@@ -25,11 +25,12 @@
 					</button>
 				</div>
 				<div class="collapse navbar-collapse">
-					<ul class="nav navbar-nav">
-						<li><a href="/">Feeds</a></li>
-						<li><a href="/new.php">New</a></li>
-						<li><a href="/torrent.php">Torrents</a></li>
-						<li><a href="/watch.php">Watchlist</a></li>
+					<ul class="nav navbar-nav"><?php
+	foreach($menu as $action => $label)
+	{
+		printf('<li%s><a href="/index.php/%s">%s</a></li>', $action == $page ? ' class="active"' : '', $action, $label);
+	}
+?></ul>
 					</ul>
 				</div>
 			</div>

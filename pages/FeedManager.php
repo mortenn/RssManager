@@ -8,11 +8,6 @@
 
 		public function renderModule()
 		{
-			if(isset($_GET['deactivate']))
-			{
-				$this->schema->feeds->getFeed($_GET['deactivate'])->deactivate();
-				redirect('/');
-			}
 			$template = new KW_Template('feeds');
 			$template->feeds = $this->schema->feeds->getActiveFeeds();
 			$stats = array();
