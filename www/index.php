@@ -1,6 +1,7 @@
 <?php
 	require('../bootstrap.php');
-	switch($_SERVER['PATH_INFO'])
+	$path = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '';
+	switch($path)
 	{
 		default:
 		case '/feeds':
