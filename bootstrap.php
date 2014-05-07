@@ -8,7 +8,8 @@
 	require_once('lib/PHP-Transmission-Class/class/TransmissionRPC.class.php');
 
 	$system = new KrameSystem(KW_DEFAULT_FLAGS & ~KW_ENABLE_SESSIONS);
-	$system->getErrorHandler()->addEmailOutputRecipient('morten@runsafe.no');
+	if($alertmail)
+		$system->getErrorHandler()->addEmailOutputRecipient($alertmail);
 	$system->addAutoLoadPath('pages');
 	$system->addAutoLoadPath('dal');
 	$system->addAutoLoadPath('dto');
