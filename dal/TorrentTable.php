@@ -9,9 +9,9 @@
 			$this->get = $this->db->prepare('SELECT * FROM `torrents` WHERE `torrent`=:torrent');
 			$this->getByFeed = $this->db->prepare('SELECT * FROM `torrents` WHERE `feed`=:feed');
 			$this->getByStatus = $this->db->prepare('SELECT * FROM `torrents` WHERE `status`=:status');
-			$this->getWatchList = $this->db->prepare('SELECT * FROM `torrents` WHERE `watched` IS NULL OR `watched` = 0 AND `status`='.TORRENT_STATUS_ADDED);
+			$this->getWatchList = $this->db->prepare('SELECT * FROM `torrents` WHERE `watched` IS NULL OR `watched` = 0 AND `status`='.TORRENT_STATUS_ADDED.' ORDER BY `added`');
 			$this->setWatched = $this->db->prepare('UPDATE `torrents` SET `watched`=1 WHERE `torrent`=:torrent');
-			$this->add = $this->db->prepare('INSERT INTO `torrents` (`feed`,`torrent`,`title`,`status`) VALUES (:feed,:torrent,:title,:status)');
+			$this->add = $this->db->prepare('INSERT INTO `torrents` (`feed`,`torrent`,`title`,`status`,`added`) VALUES (:feed,:torrent,:title,:status,NOW())');
 			$this->setStatus = $this->db->prepare('UPDATE `torrents` SET `status`=:status WHERE `torrent`=:torrent');
 			$this->statistics = $this->db->prepare('
 SELECT
@@ -55,7 +55,7 @@ GROUP BY `feed`');
 
 		public function getVersion()
 		{
-			return 3;
+			return 4;
 		}
 
 		public function getQueries()
@@ -70,7 +70,8 @@ CREATE TABLE `torrents` (
 )'
 				),
 				2 => array('ALTER TABLE `torrents` ADD COLUMN `title` VARCHAR(100)'),
-				3 => array('ALTER TABLE `torrents` ADD COLUMN `watched` BOOLEAN')
+				3 => array('ALTER TABLE `torrents` ADD COLUMN `watched` BOOLEAN'),
+				4 => array('ALTER TABLE `torrents` ADD COLUMN `added` DATETIME')
 			);
 		}
 	}
