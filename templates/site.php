@@ -31,7 +31,6 @@
 		printf('<li%s><a href="/index.php/%s">%s</a></li>', $action == $page ? ' class="active"' : '', $action, $label);
 	}
 ?></ul>
-					</ul>
 				</div>
 			</div>
 		</div>
