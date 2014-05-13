@@ -9,6 +9,7 @@ Installation
 Go to the desired location for the files on your server and clone this repository.
 ```shell
 git clone https://github.com/mortenn/RssManager.git
+cd RssManager
 git submodule init
 git submodule update
 ```
@@ -24,7 +25,7 @@ autoadd is wether or not the cron job should add torrents to transmission automa
 For the RSS scraping to happen, you will need to set up a crontab to run the poll.php script.
 I suggest setting up your crontab something like this;
 ```crontab
-*/20 * * * * /path/to/rss/manager/poll.php
+*/20 * * * * /path/to/RssManager/poll.php
 ```
 
 If you have VLC installed, the play button will let you open the downloaded files either in your browser or in a new VLC window.
