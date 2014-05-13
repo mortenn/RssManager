@@ -7,7 +7,19 @@
 <ul class="list-group">
 <?php
 		foreach($list as $file)
-			printf('<li class="list-group-item"><div class="row"><div class="col-md-11">%s</div><div class="col-md-1"><a class="btn btn-xs btn-success" href="watched?name=%s">Done</a></div></li>', $file->title, urlencode($file->torrent));
+		{
+?>
+	<li class="list-group-item">
+		<div class="row">
+			<div class="col-md-10"><?php echo $file->title; ?></div>
+			<div class="col-md-2">
+				<a class="btn btn-xs btn-primary" href="play?name=<?php echo urlencode($file->torrent); ?>">Play</a>
+				<a class="btn btn-xs btn-success" href="watched?name=<?php echo urlencode($file->torrent); ?>">Done</a>
+			</div>
+		</div>
+	</li>
+<?php
+		}
 ?>
 </ul>
 <?php

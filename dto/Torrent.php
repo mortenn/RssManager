@@ -43,5 +43,15 @@
 			$this->dal->setWatched->torrent = $this->torrent;
 			$this->dal->setWatched->execute();
 		}
+
+		public function playlist()
+		{
+			global $share;
+			$playlist = new KW_Template('playlist');
+			$playlist->root = $share;
+			$playlist->folder = $this->feed;
+			$playlist->file = $this->title;
+			return $playlist;
+		}
 	}
 ?>

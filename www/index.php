@@ -47,6 +47,12 @@
 			}
 			redirect('watch');
 			break;
+		case '/play':
+			$torrent = $schema->torrents->getTorrent($_GET['name']);
+			header('Content-Type: application/xspf+xml');
+			header('Content-Disposition: '.($embed?'inline':'attachment').'; filename="'.$torrent->title.'.xspf');
+			echo $torrent->playlist();
+			die();
 	}
 	$site->menu = array(
 		'feeds' => 'Active feeds',
