@@ -21,4 +21,14 @@ If you want error reports from the site, set $alertmail to your email address.
 TARGET is the destination folder where transmission should save your downloads.
 autoadd is wether or not the cron job should add torrents to transmission automatically.
 
-Lastly, you need to serve up the page using a web server with PHP support.
+For the RSS scraping to happen, you will need to set up a crontab to run the poll.php script.
+I suggest setting up your crontab something like this;
+```crontab
+*/20 * * * * /path/to/rss/manager/poll.php
+```
+
+If you have VLC installed, the play button will let you open the downloaded files either in your browser or in a new VLC window.
+The $embed configuration option controls this behaviour.
+$share should point to the correct path for your desktop to access the files. If you run everything on your desktop, this can be the same as TARGET.
+
+Lastly, you need to serve up the www folder using a web server with PHP support.
