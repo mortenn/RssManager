@@ -33,3 +33,9 @@ The $embed configuration option controls this behaviour.
 $share should point to the correct path for your desktop to access the files. If you run everything on your desktop, this can be the same as TARGET.
 
 Lastly, you need to serve up the www folder using a web server with PHP support.
+
+Tips and tricks
+===============
+
+To open videos seamlessly in a stand alone VLC when firefox has a VLC plugin installed, go into Options -> Applications -> Search for xspf and set action to Use other/VLC media player.
+But leave embed as true, otherwise firefox will force you to select open with/save as when you click play.
