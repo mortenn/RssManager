@@ -11,3 +11,6 @@
 .feed-skipped-torrent {
 	color: silver;
 }
+ul.history li {
+		color: gray;
+}

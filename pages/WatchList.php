@@ -9,6 +9,7 @@
 		public function renderModule()
 		{
 			$template = new KW_Template('watch');
+			$template->last = $this->schema->torrents->watchedList();
 			$template->list = $this->schema->torrents->watchList();
 			return $template;
 		}

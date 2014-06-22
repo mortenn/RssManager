@@ -1,4 +1,25 @@
 <?php
+	if(count($last) > 0)
+	{
+?>
+<ul class="list-group history">
+<?php
+		foreach(array_reverse($last) as $file)
+		{
+?>
+	<li class="list-group-item">
+		<div class="row">
+			<div class="col-md-10"><?php echo $file->title; ?></div>
+			<div class="col-md-2">
+			</div>
+		</div>
+	</li>
+<?php
+		}
+?>
+</ul>
+<?php
+	}
 	if(count($list) == 0)
 		echo 'There is nothing to watch';
 	else
