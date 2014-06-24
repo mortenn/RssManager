@@ -13,14 +13,14 @@
 				$torrent = $this->schema->torrents->getTorrent($_GET['start']);
 				if($torrent)
 					$torrent->start();
-				redirect('/torrent.php');
+				redirect('/index.php/inbox');
 			}
 			if(isset($_GET['skip']))
 			{
 				$torrent = $this->schema->torrents->getTorrent($_GET['skip']);
 				if($torrent->status == TORRENT_STATUS_NEW)
 					$torrent->skip();
-				redirect('/torrent.php');
+				redirect('/index.php/inbox');
 			}
 			$template = new KW_Template('inbox');
 			$template->torrents = $this->schema->torrents->getNew();
