@@ -9,7 +9,7 @@
 			$this->get = $this->db->prepare('SELECT * FROM `torrents` WHERE `torrent`=:torrent');
 			$this->getByFeed = $this->db->prepare('SELECT * FROM `torrents` WHERE `feed`=:feed');
 			$this->getByStatus = $this->db->prepare('SELECT * FROM `torrents` WHERE `status`=:status');
-			$this->getWatchList = $this->db->prepare('SELECT * FROM `torrents` WHERE `watched` IS NULL OR `watched` = 0 AND `status`='.TORRENT_STATUS_ADDED.' ORDER BY `added`');
+			$this->getWatchList = $this->db->prepare('SELECT * FROM `torrents` WHERE (`watched` IS NULL OR `watched` = 0) AND `status`='.TORRENT_STATUS_ADDED.' ORDER BY `added`');
 			$this->getWatchedList = $this->db->prepare('SELECT * FROM `torrents` WHERE `watched`=1 ORDER BY `added` DESC LIMIT 2');
 			$this->setWatched = $this->db->prepare('UPDATE `torrents` SET `watched`=1 WHERE `torrent`=:torrent');
 			$this->add = $this->db->prepare('INSERT INTO `torrents` (`feed`,`torrent`,`title`,`status`,`added`) VALUES (:feed,:torrent,:title,:status,NOW())');
