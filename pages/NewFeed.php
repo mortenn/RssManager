@@ -10,7 +10,7 @@
 		{
 			if($_SERVER['REQUEST_METHOD'] == 'POST')
 			{
-				$feed = new Feed($this->schema);
+				$feed = new Feed($this->schema->feeds);
 				$feed->name = $_POST['name'];
 				$feed->term = $_POST['term'];
 				$feed->active = true;
