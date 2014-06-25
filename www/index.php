@@ -4,6 +4,7 @@
 	switch($path)
 	{
 		default:
+			redirect('/index.php/feeds');
 		case '/feeds':
 			$site->title = 'Active RSS Feeds';
 			$site->page = 'feeds';
