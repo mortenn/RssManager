@@ -72,9 +72,13 @@
 		public function addTorrent($data)
 		{
 			global $schema;
+			$url = html_entity_decode($data->get_permalink());
+			$torrent = $schema->torrents->getTorrent($url);
+			if($torrent)
+				return $torrent;
 			$torrent = new Torrent($schema->torrents);
 			$torrent->feed = $this->name;
-			$torrent->torrent = html_entity_decode($data->get_permalink());
+			$torrent->torrent = $url;
 			$torrent->title = $data->get_title();
 			$torrent->status = TORRENT_STATUS_NEW;
 			$torrent->save();
