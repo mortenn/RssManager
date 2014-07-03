@@ -20,7 +20,7 @@
 			$this->dal->activate->execute();
 		}
 
-		public function dectivate()
+		public function deactivate()
 		{
 			$this->dal->activate->name = $this->name;
 			$this->dal->activate->execute();
