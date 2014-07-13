@@ -22,8 +22,8 @@
 
 		public function deactivate()
 		{
-			$this->dal->activate->name = $this->name;
-			$this->dal->activate->execute();
+			$this->dal->deactivate->name = $this->name;
+			$this->dal->deactivate->execute();
 		}
 
 		public function toggle()
