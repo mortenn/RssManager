@@ -15,19 +15,26 @@
 				<div class="col-md-10">
 					<div class="row">
 						<?php echo $feed->name; ?>
+<?php
+			if(isset($statistics[$feed->name]))
+			{
+?>
 						[<span class="feed-new-torrent"><?php 
 
-			echo $statistics[$feed->name]->new; 
+				echo $statistics[$feed->name]->new; 
 
 ?></span>/<span class="feed-added-torrent"><?php
 
-			echo $statistics[$feed->name]->added;
+				echo $statistics[$feed->name]->added;
 
 ?></span>/<span class="feed-skipped-torrent"><?php
 
-			echo $statistics[$feed->name]->skipped;
+				echo $statistics[$feed->name]->skipped;
 
 ?></span>]
+<?php
+			}
+?>
 					</div>
 					<div class="row">
 						<span class="feed-url"><?php echo $feed->uri; ?></span>
