@@ -14,3 +14,6 @@
 ul.history li {
 		color: gray;
 }
+.list-group-item:hover {
+		background: #afa;
+}
