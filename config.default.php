@@ -1,6 +1,6 @@
 <?php
 	define('KW_TEMPLATE_DIR', 'templates/');
-	define('RSS_URL', 'http://www.nyaa.se/?page=rss&term=%s');
+	define('RSS_URL', 'http://www.nyaa.se/?page=rss&cats=1_37&term=%s');
 	define('TARGET', '/torrent/');
 	$alertmail = '';
 	$embed = true;
