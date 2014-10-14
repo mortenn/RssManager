@@ -15,6 +15,7 @@
 				{
 					$feed->term = $_POST['term'];
 					$feed->save();
+					$feed->scrape();
 				}
 				redirect('/');
 			}
