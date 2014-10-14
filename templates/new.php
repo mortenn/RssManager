@@ -15,5 +15,15 @@
 	}
 	if(isset($items))
 		foreach($items as $item)
-			printf('%s<br>%s: %s<br>', $item->get_title(), $item->get_description(), $item->get_permalink());
+		{
+			$desc = $item->get_description();
+			$class = '';
+			if(preg_match('/A+/', $desc))
+				$class = ' aplus';
+			else if(preg_match('/Trusted/', $desc))
+				$class = ' trusted';
+			else if(preg_match('/Remake/', $desc))
+				$class = ' remake';
+			printf('<div class="hit%s">%s<br>%s: %s</div>', $class, $item->get_title(), $item->get_description(), $item->get_permalink());
+		}
 ?>
