@@ -16,7 +16,11 @@
 	{
 		foreach($schema->torrents->getNew() as $torrent)
 		{
-			if($autostart[$torrent->feed])
+			if(!isset($active[$torrent->feed]))
+			{
+				$torrent->skip();
+			}
+			else if($autostart[$torrent->feed])
 			{
 				try
 				{
