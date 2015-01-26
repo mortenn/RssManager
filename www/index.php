@@ -35,6 +35,11 @@
 			$site->page = 'inbox';
 			$site->content = new TorrentInbox($schema);
 			break;
+		case '/restart':
+			$site->title = 'Re-add torrents';
+			$site->page = 'restart';
+			$site->content = new TorrentRestart($schema);
+			break;
 		case '/watch':
 			$site->title = 'Torrent watchlist';
 			$site->page = 'watch';
@@ -59,6 +64,7 @@
 		'feeds' => 'Active feeds',
 		'new' => 'New feed',
 		'inbox' => 'New torrents',
+		'restart' => 'Re-add torrents',
 		'watch' => 'Torrent watchlist'
 	);
 	echo $site;
