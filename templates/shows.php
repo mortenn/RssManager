@@ -32,8 +32,8 @@
 				$shows[$file->feed] = array();
 			$shows[$file->feed][$file->title] = $file;
 		}
-		foreach($shows as $feed => &$files)
-			ksort($files);
+		foreach($shows as $feed => $files)
+			ksort($shows[$feed]);
 		ksort($shows);
 ?>
 <ul class="list-group">
