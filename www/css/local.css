@@ -29,3 +29,9 @@ div.remake {
 div.aplus {
 	background: #60b0f0;
 }
+.row.show-list {
+	display: none;
+}
+.row .show-head {
+	cursor: pointer;
+}

@@ -45,12 +45,19 @@
 			$site->page = 'watch';
 			$site->content = new WatchList($schema);
 			break;
+		case '/shows':
+			$site->title = 'Show listing';
+			$site->page = 'shows';
+			$site->content = new ShowList($schema);
+			break;
 		case '/watched':
 			if(isset($_GET['name']))
 			{
 				$torrent = $schema->torrents->getTorrent($_GET['name']);
 				$torrent->watched();
 			}
+			if(isset($_SERVER['HTTP_REFERER']))
+				redirect($_SERVER['HTTP_REFERER']);
 			redirect('watch');
 			break;
 		case '/play':
@@ -65,7 +72,8 @@
 		'new' => 'New feed',
 		'inbox' => 'New torrents',
 		'restart' => 'Re-add torrents',
-		'watch' => 'Torrent watchlist'
+		'watch' => 'Torrent watchlist',
+		'shows' => 'Show listing'
 	);
 	echo $site;
 ?>
