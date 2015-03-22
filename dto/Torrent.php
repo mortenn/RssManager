@@ -52,7 +52,7 @@
 			$playlist->broken_unicode = $broken_unicode;
 			$playlist->root = $share;
 			$playlist->folder = $this->feed;
-			$playlist->file = $this->title . ($this->file ? '/' . $this->file : $this->title);
+			$playlist->file = $this->title . ($this->file ? '/' . $this->file : '');
 			return $playlist;
 		}
 	}
