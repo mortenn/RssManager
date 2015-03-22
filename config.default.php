@@ -6,6 +6,7 @@
 	$embed = true;
 	$autoadd = false;
 	$share = 'smb://server/torrent/';
+	$broken_unicode = false;
 	$db_username = '';
 	$db_password = '';
 	$db_server = 'localhost';

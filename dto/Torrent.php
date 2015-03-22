@@ -46,8 +46,9 @@
 
 		public function playlist()
 		{
-			global $share;
+			global $share, $broken_unicode;
 			$playlist = new KW_Template('playlist');
+			$playlist->broken_unicode = $broken_unicode;
 			$playlist->root = $share;
 			$playlist->folder = $this->feed;
 			$playlist->file = $this->title;
