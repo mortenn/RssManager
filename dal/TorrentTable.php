@@ -25,12 +25,12 @@ FROM `torrents`
 GROUP BY `feed`');
 		}
 
-		public function getTorrent($torrent)
+		public function getTorrent($torrent, $file = null)
 		{
 			$this->get->torrent = $torrent;
 			$data = $this->get->execute()->getRows();
 			if(count($data) == 1)
-				return new Torrent($this, $data[0]);
+				return new Torrent($this, $data[0], $file);
 		}
 
 		public function getMatching($query)

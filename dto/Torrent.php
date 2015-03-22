@@ -1,11 +1,12 @@
 <?php
 	class Torrent extends KW_DataContainer
 	{
-		public function __construct($dal, $data = null)
+		public function __construct($dal, $data = null, $file = null)
 		{
 			if($data != null)
 				parent::__construct($data->getAsArray());
 			$this->dal = $dal;
+			$this->file = $file;
 		}
 
 		public function save()
@@ -51,7 +52,7 @@
 			$playlist->broken_unicode = $broken_unicode;
 			$playlist->root = $share;
 			$playlist->folder = $this->feed;
-			$playlist->file = $this->title;
+			$playlist->file = $this->title . ($this->file ? '/' . $this->file : $this->title);
 			return $playlist;
 		}
 	}
