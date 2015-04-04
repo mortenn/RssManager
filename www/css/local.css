@@ -17,6 +17,9 @@ ul.history li {
 .list-group-item:hover {
 		background: #afa;
 }
+.list-group-item .subfile:hover {
+		background: #adf;
+}
 div.hit {
 	margin-bottom: 1px;
 }

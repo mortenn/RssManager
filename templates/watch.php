@@ -55,7 +55,7 @@
 					{
 ?>
 		</div>
-		<div class="row">
+		<div class="row subfile">
 			<div class="col-md-10"><?php echo $content; ?></div>
 			<div class="col-md-2">
 				<a class="btn btn-xs btn-primary" href="play?name=<?php echo urlencode($file->torrent); ?>&file=<?php echo urlencode($content); ?>">Play</a>
