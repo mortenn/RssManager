@@ -59,6 +59,7 @@
 					while($e = readdir($dir))
 						if(is_file(TARGET.$file->feed.'/'.$file->title.'/'.$e))
 							$real[] = $e;
+					sort($real);
 				}
 ?>
 	<li class="list-group-item">
