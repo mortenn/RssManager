@@ -35,6 +35,11 @@
 			$site->page = 'inbox';
 			$site->content = new TorrentInbox($schema);
 			break;
+		case '/search':
+			$site->title = 'Search and add torrents';
+			$site->page = 'search';
+			$site->content = new TorrentSearch($schema);
+			break;
 		case '/restart':
 			$site->title = 'Re-add torrents';
 			$site->page = 'restart';
@@ -69,11 +74,31 @@
 			header('Content-Disposition: '.($embed?'inline':'attachment').'; filename="'.$torrent->title.'.xspf');
 			echo $torrent->playlist();
 			die();
+		case '/add':
+			if(isset($_GET['torrent']))
+			{
+				$feed = $schema->feeds->getFeed('.');
+				if($feed == null)
+				{
+					$feed = new Feed($schema->feeds);
+					$feed->name = '.';
+					$feed->term = null;
+					$feed->active = false;
+					$feed->save();
+				}
+				$torrent = $feed->addTorrent(unserialize(base64_decode($_GET['torrent'])));
+				$torrent->start();
+			}
+			if(isset($_SERVER['HTTP_REFERER']))
+				redirect($_SERVER['HTTP_REFERER']);
+			redirect('search');
+			break;
 	}
 	$site->menu = array(
 		'feeds' => 'Active feeds',
 		'new' => 'New feed',
 		'inbox' => 'New torrents',
+		'search' => 'Add torrent',
 		'restart' => 'Re-add torrents',
 		'watch' => 'Torrent watchlist',
 		'shows' => 'Show listing'
