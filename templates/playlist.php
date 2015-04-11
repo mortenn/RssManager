@@ -1,5 +1,8 @@
 <?php
-	$path = $root . $folder . '/' . $file;
+	if($folder == '.')
+		$path = $root . $file;
+	else
+		$path = $root . $folder . '/' . $file;
 	if($broken_unicode)
 		$path = utf8_encode($path);
 ?>
