@@ -75,7 +75,11 @@
 			$url = html_entity_decode($data->get_permalink());
 			$torrent = $schema->torrents->getTorrent($url);
 			if($torrent)
+			{
+				if($torrent->feed != $this->name && $torrent->status == TORRENT_STATUS_NEW)
+					$torrent->move($this->name);
 				return $torrent;
+			}
 			$torrent = new Torrent($schema->torrents);
 			$torrent->feed = $this->name;
 			$torrent->torrent = $url;

@@ -45,6 +45,13 @@
 			$this->dal->setWatched->execute();
 		}
 
+		public function move($feed)
+		{
+			$this->dal->setFeed->feed = $feed;
+			$this->dal->setFeed->torrent = $this->torrent;
+			$this->dal->setFeed->execute();
+		}
+
 		public function playlist()
 		{
 			global $share, $broken_unicode;

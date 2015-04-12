@@ -15,6 +15,7 @@
 			$this->setWatched = $this->db->prepare('UPDATE `torrents` SET `watched`=1 WHERE `torrent`=:torrent');
 			$this->add = $this->db->prepare('INSERT INTO `torrents` (`feed`,`torrent`,`title`,`status`,`added`) VALUES (:feed,:torrent,:title,:status,NOW())');
 			$this->setStatus = $this->db->prepare('UPDATE `torrents` SET `status`=:status WHERE `torrent`=:torrent');
+			$this->setFeed = $this->db->prepare('UPDATE `torrents` SET `feed`=:feed WHERE `torrent`=:torrent');
 			$this->statistics = $this->db->prepare('
 SELECT
 	`feed`,
