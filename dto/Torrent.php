@@ -44,8 +44,15 @@
 			{
 				$rpc = new TransmissionRPC('http://10.0.100.105:9091/transmission/rpc');
 				$result = $rpc->get((int)$this->id);
-				if($result->result == 'success')
+				if($result->result == 'success' && isset($result->arguments->torrents))
 					return $result->arguments->torrents[0];
+				else
+				{
+					$this->dal->setStatus->statais = $this->status;
+					$this->dal->setStatus->torrent = $this->torrent;
+					$this->dal->setStatus->id = 0;
+					$this->dal->setStatus->execute();
+				}
 			}
 		}
 
