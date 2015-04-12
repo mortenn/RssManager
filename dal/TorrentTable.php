@@ -14,7 +14,7 @@
 			$this->getWatchedList = $this->db->prepare('SELECT * FROM `torrents` WHERE `watched`=1 ORDER BY `modified` DESC, `added` DESC LIMIT 2');
 			$this->setWatched = $this->db->prepare('UPDATE `torrents` SET `watched`=1 WHERE `torrent`=:torrent');
 			$this->add = $this->db->prepare('INSERT INTO `torrents` (`feed`,`torrent`,`title`,`status`,`added`) VALUES (:feed,:torrent,:title,:status,NOW())');
-			$this->setStatus = $this->db->prepare('UPDATE `torrents` SET `status`=:status WHERE `torrent`=:torrent');
+			$this->setStatus = $this->db->prepare('UPDATE `torrents` SET `status`=:status, `id`=:id WHERE `torrent`=:torrent');
 			$this->setFeed = $this->db->prepare('UPDATE `torrents` SET `feed`=:feed WHERE `torrent`=:torrent');
 			$this->statistics = $this->db->prepare('
 SELECT
@@ -77,7 +77,7 @@ GROUP BY `feed`');
 
 		public function getVersion()
 		{
-			return 5;
+			return 6;
 		}
 
 		public function getQueries()
@@ -94,7 +94,8 @@ CREATE TABLE `torrents` (
 				2 => array('ALTER TABLE `torrents` ADD COLUMN `title` VARCHAR(100)'),
 				3 => array('ALTER TABLE `torrents` ADD COLUMN `watched` BOOLEAN'),
 				4 => array('ALTER TABLE `torrents` ADD COLUMN `added` DATETIME'),
-				5 => array('ALTER TABLE `torrents` ADD COLUMN `modified` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP')
+				5 => array('ALTER TABLE `torrents` ADD COLUMN `modified` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP'),
+				6 => array('ALTER TABLE `torrents` ADD COLUMN `id` INT')
 			);
 		}
 	}

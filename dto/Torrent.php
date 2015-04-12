@@ -24,6 +24,12 @@
 			$result = $rpc->add($this->torrent, TARGET.$this->feed);
 			if($result->result == 'success')
 			{
+				if(isset($tl->arguments->torrent_duplicate))
+					$this->dal->setStatus->id = $tl->arguments->torrent_duplicate->id;
+				else if(isset($tl->arguments->torrent_added))
+					$this->dal->setStatus->id = $tl->arguments->torrent_added->id;
+				else
+					$this->dal->setStatus->id = 0;
 				$this->dal->setStatus->status = TORRENT_STATUS_ADDED;
 				$this->dal->setStatus->torrent = $this->torrent;
 				$this->dal->setStatus->execute();
@@ -36,6 +42,7 @@
 		{
 			$this->dal->setStatus->torrent = $this->torrent;
 			$this->dal->setStatus->status = TORRENT_STATUS_SKIPPED;
+			$this->dal->setStatus->id = $this->id;
 			$this->dal->setStatus->execute();
 		}
 
