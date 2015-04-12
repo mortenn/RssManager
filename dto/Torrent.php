@@ -48,7 +48,7 @@
 					return $result->arguments->torrents[0];
 				else
 				{
-					$this->dal->setStatus->statais = $this->status;
+					$this->dal->setStatus->status = $this->status;
 					$this->dal->setStatus->torrent = $this->torrent;
 					$this->dal->setStatus->id = 0;
 					$this->dal->setStatus->execute();
