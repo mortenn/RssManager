@@ -50,6 +50,7 @@
 		{
 			if(!is_array($files))
 			{
+				$files->status();
 				$file = $files;
 				$real = false;
 				if(is_dir(TARGET.$file->feed.'/'.$file->title))
@@ -61,13 +62,18 @@
 							$real[] = $e;
 					sort($real);
 				}
+				$status = $file->status();
+				if($status != null)
+					$done = isset($status->haveValid) && $status->haveValid == $status->totalSize;
+				else
+					$done = true;
 ?>
 	<li class="list-group-item">
 		<div class="row">
 			<div class="col-md-10 show-head"><?php echo $file->title; ?></div>
 			<div class="col-md-2">
-				<a class="btn btn-xs btn-primary<?php if($real) echo ' disabled'; ?>" href="play?name=<?php echo urlencode($file->torrent); ?>">Play</a>
-				<a class="btn btn-xs btn-success" href="watched?name=<?php echo urlencode($file->torrent); ?>">Done</a>
+				<a class="btn btn-xs btn-primary<?php if($real || !$done) echo ' disabled'; ?>" href="play?name=<?php echo urlencode($file->torrent); ?>">Play</a>
+				<a class="btn btn-xs btn-success<?php if(!$done) echo ' disabled'; ?>" href="watched?name=<?php echo urlencode($file->torrent); ?>">Done</a>
 			</div>
 <?php
 				if($real)
@@ -79,7 +85,7 @@
 		<div class="row subfile">
 			<div class="col-md-10"><?php echo $content; ?></div>
 			<div class="col-md-2">
-				<a class="btn btn-xs btn-primary" href="play?name=<?php echo urlencode($file->torrent); ?>&file=<?php echo urlencode($content); ?>">Play</a>
+				<a class="btn btn-xs btn-primary<?php if(!$done) echo ' disabled'; ?>" href="play?name=<?php echo urlencode($file->torrent); ?>&file=<?php echo urlencode($content); ?>">Play</a>
 			</div>
 <?php
 					}
@@ -111,13 +117,18 @@
 							$real[] = $e;
 					sort($real);
 				}
+				$status = $file->status();
+				if($status != null)
+					$done = isset($status->haveValid) && $status->haveValid == $status->totalSize;
+				else
+					$done = true;
 ?>
 	<li class="list-group-item">
 		<div class="row">
 			<div class="col-md-10"><?php echo $file->title; ?></div>
 			<div class="col-md-2">
-				<a class="btn btn-xs btn-primary<?php if($real) echo ' disabled'; ?>" href="play?name=<?php echo urlencode($file->torrent); ?>">Play</a>
-				<a class="btn btn-xs btn-success" href="watched?name=<?php echo urlencode($file->torrent); ?>">Done</a>
+				<a class="btn btn-xs btn-primary<?php if($real || !$done) echo ' disabled'; ?>" href="play?name=<?php echo urlencode($file->torrent); ?>">Play</a>
+				<a class="btn btn-xs btn-success<?php if(!$done) echo ' disabled'; ?>" href="watched?name=<?php echo urlencode($file->torrent); ?>">Done</a>
 			</div>
 <?php
 				if($real)
@@ -129,7 +140,7 @@
 		<div class="row subfile">
 			<div class="col-md-10"><?php echo $content; ?></div>
 			<div class="col-md-2">
-				<a class="btn btn-xs btn-primary" href="play?name=<?php echo urlencode($file->torrent); ?>&file=<?php echo urlencode($content); ?>">Play</a>
+				<a class="btn btn-xs btn-primary<?php if(!$done) echo ' disabled'; ?>" href="play?name=<?php echo urlencode($file->torrent); ?>&file=<?php echo urlencode($content); ?>">Play</a>
 			</div>
 <?php
 					}

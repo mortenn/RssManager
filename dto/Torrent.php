@@ -38,6 +38,17 @@
 			return false;
 		}
 
+		public function status()
+		{
+			if($this->id)
+			{
+				$rpc = new TransmissionRPC('http://10.0.100.105:9091/transmission/rpc');
+				$result = $rpc->get((int)$this->id);
+				if($result->result == 'success')
+					return $result->arguments->torrents[0];
+			}
+		}
+
 		public function skip()
 		{
 			$this->dal->setStatus->torrent = $this->torrent;
