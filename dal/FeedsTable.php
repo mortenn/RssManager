@@ -56,7 +56,7 @@ INSERT INTO feeds (`name`,`uri`,`term`,`active`) VALUES (:name,:uri,:term,:activ
 
 		public function getVersion()
 		{
-			return 3;
+			return 4;
 		}
 
 		public function getQueries()
@@ -71,7 +71,8 @@ CREATE TABLE `feeds` (
 )'
 				),
 				2 => array('ALTER TABLE `feeds` ADD COLUMN (`term` VARCHAR(100))'),
-				3 => array('ALTER TABLE `feeds` ADD COLUMN (`autostart` BOOL)')
+				3 => array('ALTER TABLE `feeds` ADD COLUMN (`autostart` BOOL)'),
+				4 => array('ALTER TABLE `feeds` MODIFY COLUMN `name` VARCHAR(100)')
 			);
 		}
 	}

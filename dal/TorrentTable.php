@@ -77,7 +77,7 @@ GROUP BY `feed`');
 
 		public function getVersion()
 		{
-			return 6;
+			return 8;
 		}
 
 		public function getQueries()
@@ -95,7 +95,12 @@ CREATE TABLE `torrents` (
 				3 => array('ALTER TABLE `torrents` ADD COLUMN `watched` BOOLEAN'),
 				4 => array('ALTER TABLE `torrents` ADD COLUMN `added` DATETIME'),
 				5 => array('ALTER TABLE `torrents` ADD COLUMN `modified` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP'),
-				6 => array('ALTER TABLE `torrents` ADD COLUMN `id` INT')
+				6 => array('ALTER TABLE `torrents` ADD COLUMN `id` INT'),
+				7 => array(
+					'ALTER TABLE `torrents` MODIFY `torrent` VARCHAR(300)',
+					'ALTER TABLE `torrents` MODIFY `feed` VARCHAR(100)',
+				),
+				8 => array('ALTER TABLE `torrents` MODIFY COLUMN `title` VARCHAR(200)')
 			);
 		}
 	}
