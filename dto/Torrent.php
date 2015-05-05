@@ -77,14 +77,53 @@
 			$this->dal->setFeed->execute();
 		}
 
+		public function locateTarget()
+		{
+			$targetfile = $this->title;
+			$target = TARGET . $this->feed;
+			if(!is_dir($target) && is_dir(utf8_encode($target)))
+				$target = utf8_encode($target);
+			$target .= '/' . $targetfile;
+			if(is_file($target) || is_dir($target))
+				return $targetfile;
+			$files = glob(TARGET.$this->feed.'/*');
+			foreach($files as $filename)
+			{
+				$filename = str_replace(TARGET.$this->feed.'/', '', $filename);
+				if(stristr($this->title, $filename) !== false)
+					return $filename;
+			}
+		}
+
+		public function getSubfiles()
+		{
+			$target = TARGET.$this->feed;
+			if(!is_dir($target) && is_dir(utf8_encode($target)))
+				$target = utf8_encode($target);
+			$target .= '/'.$this->locateTarget();
+			if(!is_dir($target))
+				return false;
+
+			$real = array();
+			$dir = opendir($target);
+			while($e = readdir($dir))
+				if(is_file($target.'/'.$e))
+					$real[] = $e;
+			sort($real);
+			return $real;
+		}
+
 		public function playlist()
 		{
 			global $share, $broken_unicode;
 			$playlist = new KW_Template('playlist');
 			$playlist->broken_unicode = $broken_unicode;
 			$playlist->root = $share;
-			$playlist->folder = $this->feed;
-			$playlist->file = $this->title . ($this->file ? '/' . $this->file : '');
+			if(!is_dir(TARGET.$this->feed) && is_dir(utf8_encode(TARGET.$this->feed)))
+				$playlist->folder = utf8_encode(TARGET.$this->feed);
+			else
+				$playlist->folder = $this->feed;
+			$playlist->file = $this->locateTarget() . ($this->file ? '/' . $this->file : '');
 			return $playlist;
 		}
 	}
