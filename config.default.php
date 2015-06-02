@@ -19,5 +19,4 @@
   $db_password = '';
   $db_server = 'localhost';
   $db_name = 'nyaa_feeds';
-
 ?>
