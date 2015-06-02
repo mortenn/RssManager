@@ -15,12 +15,14 @@ git submodule update
 ```
 
 Next, you need to copy config.default.php to config.php and edit it to input your own details.
-If you are going to work off of nyaa, you should only need to modify the database connection details and the TARGET.
+If you are going to work off of nyaa, you should only need to modify the database connection details,
+transmission connection details and the TARGET. 
 
 If you want error reports from the site, set $alertmail to your email address.
 
 TARGET is the destination folder where transmission should save your downloads.
 autoadd is wether or not the cron job should add torrents to transmission automatically.
+
 
 For the RSS scraping to happen, you will need to set up a crontab to run the poll.php script.
 I suggest setting up your crontab something like this;

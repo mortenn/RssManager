@@ -20,7 +20,7 @@
 
 		public function start()
 		{
-			$rpc = new TransmissionRPC('http://10.0.100.105:9091/transmission/rpc');
+			$rpc = new TransmissionRPC(TRANSMISSION_URL, TRANSMISSION_USERNAME, TRANSMISSION_PASSWORD);
 			$result = $rpc->add($this->torrent, TARGET.$this->feed);
 			if($result->result == 'success')
 			{
@@ -42,7 +42,7 @@
 		{
 			if($this->id)
 			{
-				$rpc = new TransmissionRPC('http://10.0.100.105:9091/transmission/rpc');
+        $rpc = new TransmissionRPC(TRANSMISSION_URL, TRANSMISSION_USERNAME, TRANSMISSION_PASSWORD);
 				$result = $rpc->get((int)$this->id);
 				if($result->result == 'success' && isset($result->arguments->torrents))
 					return $result->arguments->torrents[0];
