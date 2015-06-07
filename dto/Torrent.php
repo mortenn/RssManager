@@ -90,6 +90,16 @@
 			foreach($files as $filename)
 			{
 				$filename = str_replace(TARGET.$this->feed.'/', '', $filename);
+				if($this->feed == '.' || !is_file(TARGET.$this->feed.'/'.$filename))
+					continue;
+				if(stristr($filename, $this->title) !== false)
+					return $filename;
+			}
+			foreach($files as $filename)
+			{
+				$filename = str_replace(TARGET.$this->feed.'/', '', $filename);
+				if($this->feed == '.' && is_file(TARGET.$filename))
+					continue;
 				if(stristr($this->title, $filename) !== false)
 					return $filename;
 			}
