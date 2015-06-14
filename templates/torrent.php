@@ -2,9 +2,10 @@
 	$targetfile = $torrent->locateTarget();
 	$real = $torrent->getSubfiles();
 	$status = $torrent->status();
+	$done = false;
 	if($status != null)
 		$done = isset($status->haveValid) && $status->haveValid == $status->totalSize;
-	else
+	else if(file_exists($targetfile))
 		$done = true;
 ?>
 <li class="list-group-item">
