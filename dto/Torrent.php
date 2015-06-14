@@ -111,7 +111,7 @@
 			if(!is_dir($target) && is_dir(utf8_encode($target)))
 				$target = utf8_encode($target);
 			$target .= '/'.$this->locateTarget();
-			if(!is_dir($target))
+			if(!is_dir($target) || realpath($target) == realpath(TARGET))
 				return false;
 
 			$real = array();
