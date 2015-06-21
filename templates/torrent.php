@@ -6,7 +6,7 @@
 	$finfo = finfo_open(FILEINFO_MIME_TYPE);
 	if($status != null)
 		$done = isset($status->haveValid) && $status->haveValid == $status->totalSize;
-	else if(file_exists($targetfile))
+	else if(file_exists(TARGET.$torrent->feed.'/'.$targetfile))
 		$done = true;
 ?>
 <li class="list-group-item">
