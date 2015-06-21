@@ -24,7 +24,7 @@
 			{
 				try
 				{
-					echo 'Adding torrent for '.$torrent->title.': '.($torrent->start() ? 'OK' : 'Error');
+					echo 'Adding torrent for '.$torrent->title.': '.($torrent->start() ? 'OK' : 'Error')."\n";
 				}
 				catch(Exception $e)
 				{
