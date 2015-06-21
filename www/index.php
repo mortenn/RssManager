@@ -71,6 +71,14 @@
 			redirect('watch');
 			break;
 		case '/play':
+			if(isset($_GET['feed']))
+			{
+				$feed = $schema->feeds->getFeed($_GET['feed']);
+				header('Content-Type: application/xspf+xml');
+				header('Content-Disposition: '.($embed?'inline':'attachment').'; filename="'.$feed->name.'.xspf');
+				echo $feed->playlist($_GET['done'] == 1);
+				die();
+			}
 			if(isset($_GET['file']))
 				$torrent = $schema->torrents->getTorrent($_GET['name'], $_GET['file']);
 			else

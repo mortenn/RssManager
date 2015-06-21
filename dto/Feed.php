@@ -14,6 +14,39 @@
 			$this->dal = $dal;
 		}
 
+		public function playlist($all = false)
+		{
+			global $share, $broken_unicode, $schema;
+			$playlist = new KW_Template('playlist.feed');
+			$playlist->broken_unicode = $broken_unicode;
+			$playlist->root = $share;
+			if(!is_dir(TARGET.$this->feed) && is_dir(utf8_encode(TARGET.$this->name)))
+				$playlist->folder = utf8_encode(TARGET.$this->name);
+			else
+				$playlist->folder = $this->name;
+
+			$files = array();
+			$schema->torrents->getByFeed->feed = $this->name;
+			foreach($schema->torrents->getByFeed->execute()->getRows() as $torrent)
+			{
+				if(!$torrent->watched || $all)
+				{
+					$dto = new Torrent($schema->torrents, $torrent);
+					$target = $dto->locateTarget();
+					if(is_dir(TARGET.$this->name.'/'.$target))
+					{
+						foreach(glob(TARGET.$this->name.'/*') as $file)
+							$files[] = str_replace(TARGET.$this->name.'/','',$file);
+					}
+					else
+						$files[] = $target;
+				}
+			}
+			sort($files);
+			$playlist->files = $files;
+			return (string)$playlist;
+		}
+
 		public function activate()
 		{
 			$this->dal->activate->name = $this->name;
