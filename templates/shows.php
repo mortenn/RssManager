@@ -58,7 +58,10 @@
 ?>
 	<li class="list-group-item">
 		<div class="row">
-			<div class="col-md-12 show-head"><?php echo $show.' ('.count($files).')'; ?></div>
+			<div class="col-md-10 show-head"><?php echo $show.' ('.count($files).')'; ?></div>
+			<div class="col-md-2 show-head">
+				<a class="btn btn-xs btn-primary" href="play?feed=<?php echo urlencode($show); ?>&done=0">Play all</a>
+			</div>
 		</div>
 		<div class="row show-list">
 			<div class="col-md-12">
