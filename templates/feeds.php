@@ -14,7 +14,7 @@
 			<div class="row">
 				<div class="col-md-10">
 					<div class="row">
-						<?php echo $feed->name; ?>
+						<a href="torrents?feed=<?php echo urlencode($feed->name); ?>"><?php echo $feed->name; ?></a>
 <?php
 			if(isset($statistics[$feed->name]))
 			{

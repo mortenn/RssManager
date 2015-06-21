@@ -10,6 +10,11 @@
 			$site->page = 'feeds';
 			$site->content = new FeedManager($schema);
 			break;
+		case '/torrents':
+			$site->title = 'Torrents in feed '.$_GET['feed'];
+			$site->page = 'watch';
+			$site->content = new TorrentList($schema, $schema->feeds->getFeed($_GET['feed']));
+			break;
 		case '/new':
 			$site->title = 'Add RSS Feed';
 			$site->page = 'new';
