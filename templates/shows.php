@@ -29,7 +29,7 @@
 		$shows = array();
 		foreach($list as $file)
 		{
-			if($file->feed == '.')
+			if(isInvisible($file->feed))
 			{
 				$shows[$file->title] = $file;
 				continue;
