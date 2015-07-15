@@ -11,10 +11,10 @@
 ?>
 <li class="list-group-item">
 	<div class="row">
-		<div class="col-md-10"><?php if(empty($targetfile)) echo $torrent->title; else echo $targetfile; ?></div>
-		<div class="col-md-2">
-			<a class="btn btn-xs btn-primary<?php if($real || !$done) echo ' disabled'; ?>" href="play?name=<?php echo urlencode($torrent->torrent); ?>">Play</a>
-			<a class="btn btn-xs btn-success<?php if($torrent->watched || !$done) echo ' disabled'; ?>" href="watched?name=<?php echo urlencode($torrent->torrent); ?>">Done</a>
+		<div class="col-md-9"><?php if(empty($targetfile)) echo $torrent->title; else echo $targetfile; ?></div>
+		<div class="col-md-3">
+			<a style="width:50px" class="btn btn-xs btn-primary<?php if(!$done) echo ' disabled'; ?>" href="play?name=<?php echo urlencode($torrent->torrent); ?>"><?php echo $real ? 'P.All' : 'Play'; ?></a>
+			<a style="width:50px" class="btn btn-xs btn-success<?php if($torrent->watched || !$done) echo ' disabled'; ?>" href="watched?name=<?php echo urlencode($torrent->torrent); ?>">Done</a>
 		</div>
 <?php
 	if($real)

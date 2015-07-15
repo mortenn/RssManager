@@ -142,14 +142,33 @@
 		public function playlist()
 		{
 			global $share, $broken_unicode;
-			$playlist = new KW_Template('playlist');
+			$real = false;
+			$folder = $this->feed;
+			if($folder == '.')
+				$folder = '';
+			else if(!is_dir(TARGET.$folder) && is_dir(TARGET.utf8_encode($folder)))
+				$folder = utf8_encode($folder);
+			if(!$this->file)
+			{
+				$real = $this->getSubfiles();
+				if($real)
+				{
+					$target = $this->locateTarget();
+					if(!is_dir(TARGET.$folder.'/'.$target) && is_dir(TARGET.$folder.'/'.utf8_encode($target)))
+						$target = utf8_encode($target);
+					$folder .= '/'.$target;
+				}
+			}
+			$playlist = new KW_Template($real ? 'playlist.feed' : 'playlist');
 			$playlist->broken_unicode = $broken_unicode;
 			$playlist->root = $share;
-			if(!is_dir(TARGET.$this->feed) && is_dir(utf8_encode(TARGET.$this->feed)))
-				$playlist->folder = utf8_encode(TARGET.$this->feed);
+			$playlist->folder = $folder;
+
+			if($real)
+				$playlist->files = $real;
 			else
-				$playlist->folder = $this->feed;
-			$playlist->file = $this->locateTarget() . ($this->file ? '/' . $this->file : '');
+				$playlist->file = $this->locateTarget() . ($this->file ? '/' . $this->file : '');
+
 			return $playlist;
 		}
 	}
