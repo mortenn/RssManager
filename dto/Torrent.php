@@ -105,6 +105,7 @@
 				if(stristr($this->title, $filename) !== false)
 					return $filename;
 			}
+			return $this->title;
 		}
 
 		public function getSubfiles()
