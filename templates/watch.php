@@ -11,7 +11,7 @@
 		<div class="row">
 			<div class="col-md-9"><?php echo $file->title; ?></div>
 			<div class="col-md-3">
-				<a class="btn btn-xs btn-primary" href="play?name=<?php echo urlencode($file->torrent); ?>">Play</a>
+				<a style="width:50px" class="btn btn-xs btn-primary" href="play?name=<?php echo urlencode($file->torrent); ?>">Play</a>
 			</div>
 		</div>
 	</li>
