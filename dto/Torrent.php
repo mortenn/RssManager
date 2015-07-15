@@ -113,8 +113,10 @@
 			$target = TARGET.$this->feed;
 			if(!is_dir($target) && is_dir(utf8_encode($target)))
 				$target = utf8_encode($target);
-			$target .= '/'.$this->locateTarget();
-			if(!is_dir($target) || realpath($target) == realpath(TARGET))
+			$realTarget = $this->locateTarget();
+			if($realTarget)
+				$target .= '/'.$realTarget;
+			if(!$realTarget || !is_dir($target) || realpath($target) == realpath(TARGET))
 				return false;
 
 			$real = array();
