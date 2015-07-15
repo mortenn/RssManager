@@ -108,6 +108,17 @@
 			return $this->title;
 		}
 
+		public function validTarget()
+		{
+			$target = TARGET.$this->feed;
+			if(!is_dir($target) && is_dir(utf8_encode($target)))
+				$target = utf8_encode($target);
+			$realTarget = $this->locateTarget();
+			if($realTarget)
+				$target .= '/'.$realTarget;
+			return $realTarget && (is_dir($target) || is_file($target)) && realpath($target) != realpath(TARGET);
+		}
+
 		public function getSubfiles()
 		{
 			$target = TARGET.$this->feed;
