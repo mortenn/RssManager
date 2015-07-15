@@ -4,10 +4,10 @@
 	$status = $torrent->status();
 	$done = false;
 	$finfo = finfo_open(FILEINFO_MIME_TYPE);
-	if($status != null)
-		$done = isset($status->haveValid) && $status->haveValid == $status->totalSize;
-	else if(file_exists(TARGET.$torrent->feed.'/'.$targetfile))
+	if(file_exists(TARGET.$torrent->feed.'/'.$targetfile))
 		$done = true;
+	if($status != null && $done)
+		$done = isset($status->haveValid) && $status->haveValid == $status->totalSize;
 ?>
 <li class="list-group-item">
 	<div class="row">
