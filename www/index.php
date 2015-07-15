@@ -66,6 +66,12 @@
 			$site->content = new ShowList($schema);
 			break;
 		case '/watched':
+			if(isset($_GET['feed']))
+			{
+				$feed = $schema->feeds->getFeed($_GET['feed']);
+				foreach($feed->getTorrents() as $torrent)
+					$torrent->watched();
+			}
 			if(isset($_GET['name']))
 			{
 				$torrent = $schema->torrents->getTorrent($_GET['name']);

@@ -28,9 +28,9 @@
 ?>
 	</div>
 	<div class="row subfile">
-		<div class="col-md-10"><?php echo $content; ?></div>
-		<div class="col-md-2">
-			<a class="btn btn-xs btn-primary<?php if($mime == 'text/plain' || preg_match('/.part$/', $content)) echo ' disabled'; ?>" href="play?name=<?php echo urlencode($torrent->torrent); ?>&file=<?php echo urlencode($content); ?>">Play</a>
+		<div class="col-md-9"><?php echo $content; ?></div>
+		<div class="col-md-3">
+			<a style="width:50px" class="btn btn-xs btn-primary<?php if($mime == 'text/plain' || preg_match('/.part$/', $content)) echo ' disabled'; ?>" href="play?name=<?php echo urlencode($torrent->torrent); ?>&file=<?php echo urlencode($content); ?>">Play</a>
 		</div>
 <?php
 		}
