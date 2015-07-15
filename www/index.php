@@ -35,6 +35,11 @@
 				$schema->feeds->getFeed($_GET['name'])->deactivate();
 			redirect('feeds');
 			break;
+		case '/activate':
+			if(isset($_GET['name']))
+				$schema->feeds->getFeed($_GET['name'])->activate();
+			redirect('feeds');
+			break;
 		case '/inbox':
 			$site->title = 'New torrents from RSS';
 			$site->page = 'inbox';
