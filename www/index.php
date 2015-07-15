@@ -108,7 +108,7 @@
 			break;
 	}
 	$site->menu = array(
-		'feeds' => 'Active feeds',
+		'feeds' => 'RSS feeds',
 		'new' => 'New feed',
 		'inbox' => 'New torrents',
 		'search' => 'Add torrent',

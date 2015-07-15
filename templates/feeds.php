@@ -1,3 +1,7 @@
+<form method="get">
+	<input type="text" name="q" value="<?php if(isset($_GET['q'])) echo $_GET['q']; ?>" />
+	<input type="submit" value="search" />
+</form>
 <?php
 	if(count($feeds) == 0)
 		echo 'There are no feeds';

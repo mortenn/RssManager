@@ -9,7 +9,10 @@
 		public function renderModule()
 		{
 			$template = new KW_Template('feeds');
-			$template->feeds = $this->schema->feeds->getActiveFeeds();
+			if(isset($_GET['q']) && trim($_GET['q']) != '')
+				$template->feeds = $this->schema->feeds->getFeeds(trim($_GET['q']));
+			else
+				$template->feeds = $this->schema->feeds->getActiveFeeds();
 			$stats = array();
 			foreach($this->schema->torrents->statistics->getRows() as $stat)
 				$stats[$stat->feed] = $stat;
