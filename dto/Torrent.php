@@ -121,12 +121,17 @@
 
 		public function getSubfiles()
 		{
-			$target = TARGET.$this->feed;
+			$target = $this->feed == '.' ? TARGET : TARGET.$this->feed.'/';
 			if(!is_dir($target) && is_dir(utf8_encode($target)))
 				$target = utf8_encode($target);
 			$realTarget = $this->locateTarget();
 			if($realTarget)
-				$target .= '/'.$realTarget;
+			{
+				if(!is_dir($target.$realTarget) && is_dir(utf8_encode($target.$realTarget)))
+					$target .= utf8_encode($realTarget);
+				else
+					$target .= $realTarget;
+			}
 			if(!$realTarget || !is_dir($target) || realpath($target) == realpath(TARGET))
 				return false;
 
