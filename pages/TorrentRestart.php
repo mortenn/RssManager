@@ -13,6 +13,8 @@
 				$torrent = $this->schema->torrents->getTorrent($_GET['start']);
 				if($torrent)
 					$torrent->start();
+				if(empty($_GET['query']) && isset($_SERVER['HTTP_REFERER']))
+					redirect($_SERVER['HTTP_REFERER']);
 				redirect('/index.php/restart?query='.$_GET['query']);
 			}
 			$template = new KW_Template('restart');
