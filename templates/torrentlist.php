@@ -24,9 +24,15 @@
 		<div class="row">
 			<div class="col-md-9">&nbsp;</div>
 			<div class="col-md-3">
-				<a class="btn btn-xs btn-primary" style="width:50px" href="play?feed=<?php echo $torrent->feed; ?>&done=0">P.New</a>
-				<a class="btn btn-xs btn-primary" style="width:50px"href="play?feed=<?php echo $torrent->feed; ?>&done=1">P.All</a>
-				<a class="btn btn-xs btn-info" style="width:50px"href="watched?feed=<?php echo $torrent->feed; ?>">D.All</a>
+				<a class="btn btn-xs btn-primary" style="width:100px" href="play?feed=<?php echo $torrent->feed; ?>&done=0">Play new</a>
+				<a class="btn btn-xs btn-primary" style="width:100px" href="play?feed=<?php echo $torrent->feed; ?>&done=1">Play all</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-9">&nbsp;</div>
+			<div class="col-md-3">
+				<a class="btn btn-xs btn-info" style="width:100px" href="watched?feed=<?php echo $torrent->feed; ?>">Done all</a>
+				<a class="btn btn-xs btn-warning" style="width:100px" href="?feed=<?php echo $torrent->feed; ?>&all=1">Show all</a>
 			</div>
 		</div>
 	</li>
