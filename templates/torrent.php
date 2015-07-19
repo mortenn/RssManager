@@ -15,6 +15,14 @@
 		<div class="col-md-3">
 			<a style="width:50px" class="btn btn-xs btn-primary<?php if(!$done) echo ' disabled'; ?>" href="play?name=<?php echo urlencode($torrent->torrent); ?>"><?php echo $real ? 'P.All' : 'Play'; ?></a>
 			<a style="width:50px" class="btn btn-xs btn-success<?php if($torrent->watched || !$done) echo ' disabled'; ?>" href="watched?name=<?php echo urlencode($torrent->torrent); ?>">Done</a>
+<?php
+	if(isset($restart) && $restart)
+	{
+?>
+			<a class="btn btn-xs btn-primary" href="restart?start=<?php echo urlencode($torrent->torrent); ?>">Readd</a>
+<?php
+	}
+?>
 		</div>
 <?php
 	if($real)

@@ -1,13 +1,12 @@
-<ul>
 <?php
 	$template = new KW_Template('torrent');
+	$template->restart = true;
 	$valid = 0;
 	$lists = array();
 	foreach($torrents as $torrent)
 	{
 		if($showAll || $torrent->validTarget())
 		{
-			if($valid == 0) echo '<ul>';
 			$valid++;
 			$template->torrent = $torrent;
 			$list[$torrent->title] = (string)$template;
