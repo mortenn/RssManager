@@ -10,6 +10,7 @@
 		public function renderModule()
 		{
 			$template = new KW_Template('torrentlist');
+			$template->showAll = isset($_GET['all']);
 			$torrents = array();
 			foreach($this->feed->getTorrents() as $torrent => $status)
 				$torrents[] = $this->schema->torrents->getTorrent($torrent);

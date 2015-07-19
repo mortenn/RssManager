@@ -2,18 +2,24 @@
 <?php
 	$template = new KW_Template('torrent');
 	$valid = 0;
+	$lists = array();
 	foreach($torrents as $torrent)
 	{
-		if($torrent->validTarget())
+		if($showAll || $torrent->validTarget())
 		{
 			if($valid == 0) echo '<ul>';
 			$valid++;
 			$template->torrent = $torrent;
-			echo $template;
+			$list[$torrent->title] = (string)$template;
 		}
 	}
 	if($valid)
 	{
+?>
+<ul>
+<?php
+		ksort($list);
+		echo join('', array_reverse($list));
 ?>
 	<li class="list-group-item">
 		<div class="row">
