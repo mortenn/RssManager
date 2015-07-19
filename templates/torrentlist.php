@@ -30,6 +30,10 @@
 			</div>
 		</div>
 	</li>
+</ul>
+	<script type="text/javascript">
+		$(function(){ $('.row .show-head').click(function(){ $(this).parent().siblings('.show-list').toggle(); }); });
+	</script>
 <?php
 	}
 	if($valid)
