@@ -58,8 +58,11 @@
 ?>
 	<li class="list-group-item">
 		<div class="row">
-			<div class="col-md-9 show-head"><?php echo $show.' ('.count($files).')'; ?></div>
-			<div class="col-md-3 show-head">
+			<div class="col-md-9 show-head">
+				<a href="torrents?feed=<?php echo urlencode($show); ?>"><?php echo $show; ?></a>
+				(<?php echo count($files); ?>)
+			</div>
+			<div class="col-md-3">
 				<a class="btn btn-xs btn-primary" style="width:50px" href="play?feed=<?php echo urlencode($show); ?>&done=0">P.All</a>
 				<a class="btn btn-xs btn-info" style="width:50px" href="watched?feed=<?php echo urlencode($show); ?>">D.All</a>
 			</div>
