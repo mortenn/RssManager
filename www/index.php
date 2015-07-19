@@ -69,8 +69,11 @@
 			if(isset($_GET['feed']))
 			{
 				$feed = $schema->feeds->getFeed($_GET['feed']);
-				foreach($feed->getTorrents() as $torrent)
-					$torrent->watched();
+				foreach($feed->getTorrents() as $torrent => $status)
+				{
+					$dto = $schema->torrents->getTorrent($torrent);
+					$dto->watched();
+				}
 			}
 			if(isset($_GET['name']))
 			{
