@@ -42,8 +42,6 @@
 	</script>
 <?php
 	}
-	if($valid)
-		echo '</ul>';
 	else
 	{
 ?>
