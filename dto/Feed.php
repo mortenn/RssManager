@@ -83,22 +83,27 @@
 
 		public function scrape()
 		{
-			$scraped = $this->getTorrents();
+			$scraped = $this->getTorrents(false);
 			foreach($this->read() as $item)
 			{
-				$torrent = html_entity_decode($item->get_permalink());
+				$torrent = preg_replace('/^[^:]*:\/\//','',html_entity_decode($item->get_permalink()));
 				if(!isset($scraped[$torrent]))
 					$this->addTorrent($item);
 			}
 		}
 
-		public function getTorrents()
+		public function getTorrents($protocol = true)
 		{
 			global $schema;
 			$schema->torrents->getByFeed->feed = $this->name;
 			$torrents = array();
 			foreach($schema->torrents->getByFeed->execute()->getRows() as $torrent)
-				$torrents[$torrent->torrent] = $torrent->status;
+			{
+				$tor = $torrent->torrent;
+				if(!$protocol)
+					$tor = preg_replace('/^[^:]*:\/\//','',$tor);
+				$torrents[$tor] = $torrent->status;
+			}
 			return $torrents;
 		}
 
