@@ -14,7 +14,7 @@
 		<div class="col-md-9<?php if($real) echo ' show-head'; ?>"><?php if(empty($targetfile)) echo $torrent->title; else echo $targetfile; ?></div>
 		<div class="col-md-3">
 			<a style="width:50px" class="btn btn-xs btn-primary<?php if(!$done) echo ' disabled'; ?>" href="play?name=<?php echo urlencode($torrent->torrent); ?>"><?php echo $real ? 'P.All' : 'Play'; ?></a>
-			<a style="width:50px" class="btn btn-xs btn-success<?php if($torrent->watched || !$done) echo ' disabled'; ?>" href="watched?name=<?php echo urlencode($torrent->torrent); ?>">Done</a>
+			<a style="width:50px" class="btn btn-xs btn-success<?php if($torrent->watched) echo ' disabled'; ?>" href="watched?name=<?php echo urlencode($torrent->torrent); ?>">Done</a>
 <?php
 	if(isset($restart) && $restart)
 	{
