@@ -4,6 +4,7 @@
 	define('TARGET', '/torrent/');
 	$allow_from = '/^(10\.|192\.168\.)/';
 	$invisible = array('.');
+	$transmission_link = 'http://127.0.0.1:9091/transmission/web/';
 	$rpc_server = 'http://127.0.0.1:9091/transmission/rpc';
 	$alertmail = '';
 	$embed = true;

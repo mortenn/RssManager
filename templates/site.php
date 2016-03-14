@@ -17,8 +17,8 @@
 		<![endif]-->
 	</head>
 	<body>
-		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-			<div class="container">
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container-fluid">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 						<span class="sr-only">Toggle navigation</span>
@@ -34,9 +34,19 @@
 		printf('<li%s><a href="/index.php/%s">%s</a></li>', $action == $page ? ' class="active"' : '', $action, $label);
 	}
 ?></ul>
+<?php
+	if($transmission)
+	{
+?>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="<?php echo $transmission; ?>" target="_blank"><img src="<?php echo $transmission; ?>images/favicon.png"></a></li>
+					</ul>
+<?php
+	}
+?>
 				</div>
 			</div>
-		</div>
+		</nav>
 		<div class="container">
 			<br /><br /><br />
 			<p><?php echo $content; ?></p>
