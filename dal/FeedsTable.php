@@ -1,6 +1,10 @@
 <?php
 	class FeedsTable extends KW_Repository
 	{
+		public function __construct()
+		{
+		}
+
 		public function prepare()
 		{
 			$this->get = $this->db->prepare('SELECT * FROM `feeds` WHERE `name`=:name');

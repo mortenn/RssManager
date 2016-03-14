@@ -21,9 +21,11 @@
 	$system->addAutoLoadPath('dto');
 
 	$db = new KW_DatabaseConnection('mysql:dbname='.$db_name.';host='.$db_server, $db_username, $db_password);
-	$schema = new KW_SchemaManager($db);
-	$schema->addTable(new FeedsTable());
-	$schema->addTable(new TorrentTable());
+	$system->addBinding('ISchemaTable', 'FeedsTable');
+	$system->addBinding('ISchemaTable', 'TorrentTable');
+	$system->addBinding('IDatabaseConnection', $db);
+	$system->addBinding('ISchemaManager', 'KW_SchemaManager');
+	$schema = $system->getComponent('ISchemaManager');
 	$schema->update();
 
 	$site = new KW_Template('site');

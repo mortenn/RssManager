@@ -4,6 +4,10 @@
 	define('TORRENT_STATUS_SKIPPED', 2);
 	class TorrentTable extends KW_Repository
 	{
+		public function __construct()
+		{
+		}
+
 		public function prepare()
 		{
 			$this->get = $this->db->prepare('SELECT * FROM `torrents` WHERE `torrent`=:torrent');
