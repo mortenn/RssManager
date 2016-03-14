@@ -122,6 +122,7 @@
 			break;
 	}
 	$site->transmission = $transmission_link;
+	$site->theme = $theme;
 	$site->menu = array(
 		'feeds' => 'RSS feeds',
 		'new' => 'New feed',

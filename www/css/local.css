@@ -15,10 +15,10 @@ ul.history li {
 		color: gray;
 }
 .list-group-item:hover {
-		background: #afa;
+	background: rgba(100,100,100,100);
 }
 .list-group-item .subfile:hover {
-		background: #adf;
+	background: rgba(100,100,100,100);
 }
 div.hit {
 	margin-bottom: 1px;

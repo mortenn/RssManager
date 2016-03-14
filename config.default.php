@@ -7,6 +7,7 @@
 	$transmission_link = 'http://127.0.0.1:9091/transmission/web/';
 	$rpc_server = 'http://127.0.0.1:9091/transmission/rpc';
 	$alertmail = '';
+	$theme = false; // Set to a theme from bootswatch.com to if desired, eg. 'superhero'
 	$embed = true;
 	$autoadd = false;
 	$share = 'smb://server/torrent/';
