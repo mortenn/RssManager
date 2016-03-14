@@ -7,6 +7,12 @@
 	require_once('lib/simplepie_1.3.1.compiled.php');
 	require_once('lib/PHP-Transmission-Class/class/TransmissionRPC.class.php');
 
+	if(!preg_match($allow_from, $_SERVER['REMOTE_ADDR']))
+	{
+		header('HTTP/1.1 403 Forbidden');
+		die();
+	}
+
 	$system = new KrameSystem(KW_DEFAULT_FLAGS & ~KW_ENABLE_SESSIONS);
 	if($alertmail)
 		$system->getErrorHandler()->addEmailOutputRecipient($alertmail);

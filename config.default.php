@@ -2,6 +2,7 @@
 	define('KW_TEMPLATE_DIR', 'templates/');
 	define('RSS_URL', 'http://www.nyaa.se/?page=rss&cats=1_37&term=%s');
 	define('TARGET', '/torrent/');
+	$allow_from = '/^(10\.|192\.168\.)/';
 	$invisible = array('.');
 	$rpc_server = 'http://127.0.0.1:9091/transmission/rpc';
 	$alertmail = '';
