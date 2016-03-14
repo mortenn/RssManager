@@ -60,7 +60,7 @@
 		<div class="row">
 			<div class="col-md-9 show-head">
 				<a href="torrents?feed=<?php echo urlencode($show); ?>"><?php echo $show; ?></a>
-				(<?php echo count($files); ?>)
+				<span class="badge"><?php echo count($files); ?></span>
 			</div>
 			<div class="col-md-3">
 				<a class="btn btn-xs btn-primary" style="width:50px" href="play?feed=<?php echo urlencode($show); ?>&done=0">P.All</a>
