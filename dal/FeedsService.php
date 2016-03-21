@@ -1,66 +1,29 @@
 <?php
-	class FeedsTable extends KW_Repository
+	class FeedsTable extends KW_CacheAwareCRUDService
 	{
-		public function __construct()
+		public function __construct(KW_SchemaManager $schema, ICacheState $state, IErrorHandler $error)
 		{
+			parent::__construct($schema, $state, $error);
 		}
 
-		public function prepare()
+		public function getOrigin()
 		{
-			$this->get = $this->db->prepare('SELECT * FROM `feeds` WHERE `name`=:name');
-			$this->loadActive = $this->db->prepare('SELECT * FROM `feeds` WHERE `active`=1');
-			$this->loadInactive = $this->db->prepare('SELECT * FROM `feeds` WHERE `active`=0');
-			$this->deactivate = $this->db->prepare('UPDATE `feeds` SET `active`=0 WHERE `name`=:name');
-			$this->activate = $this->db->prepare('UPDATE `feeds` SET `active`=1 WHERE `name`=:name');
-			$this->autostart = $this->db->prepare('UPDATE `feeds` SET `autostart`=:value WHERE `name`=:name');
-			$this->search = $this->db->prepare('SELECT * FROM `feeds` WHERE name LIKE :query');
-			$this->save = $this->db->prepare('
-INSERT INTO feeds (`name`,`uri`,`term`,`active`) VALUES (:name,:uri,:term,:active)
-	ON DUPLICATE KEY UPDATE `term`=VALUES(`term`),`uri`=VALUES(`uri`),`active`=VALUES(`active`)');
+			return 'https://nyaa.runsafe.no';
 		}
 
-		public function getFeed($name)
+		public function getKey()
 		{
-			$this->get->name = $name;
-			$this->get->execute();
-			$result = $this->get->getRows();
-			if(count($result) == 1)
-				return new Feed($this, $result[0]);
-			return null;
+			return 'name';
 		}
 
-		public function getActiveFeeds()
+		public function hasAutoKey()
 		{
-			$feeds = array();
-			foreach($this->loadActive->getRows() as $feed)
-				$feeds[] = new Feed($this, $feed);
-			return $feeds;
+			return false;
 		}
 
-		public function getInActiveFeeds()
+		public function getValues()
 		{
-			$feeds = array();
-			foreach($this->loadInactive->getRows() as $feed)
-				$feeds[] = new Feed($this, $feed);
-			return $feeds;
-		}
-
-		public function getFeeds($query)
-		{
-			$feeds = array();
-			$this->search->query = '%'.trim($query).'%';
-			foreach($this->search->getRows() as $feed)
-				$feeds[] = new Feed($this, $feed);
-			return $feeds;
-		}
-
-		public function saveFeed($feed)
-		{
-			$this->save->name = $feed->name;
-			$this->save->uri = $feed->uri;
-			$this->save->term = $feed->term;
-			$this->save->active = $feed->active;
-			$this->save->execute();
+			return ['uri','active','term','autostart'];
 		}
 
 		public function getName()
@@ -71,6 +34,48 @@ INSERT INTO feeds (`name`,`uri`,`term`,`active`) VALUES (:name,:uri,:term,:activ
 		public function getVersion()
 		{
 			return 4;
+		}
+
+		public function getNewObject($data)
+		{
+			return new Feed($this, $data);
+		}
+
+		public function process($object)
+		{
+			//... get active/inactive feeds
+			if(isset($_GET['active']))
+				return $this->search('active')->equals($_GET['active'] == 0 ? 0 : 1)->execute();
+
+			//... search for feed by name
+			if(isset($_GET['search']))
+				return $this->search('name')->like('%'.trim($_GET['search']).'%')->execute();
+
+			if(isset($_GET['feed']))
+			{
+				$feed = $this->read($_GET['feed']);
+
+				if(isset($_GET['activate']) && !$feed->active)
+					$feed->activate();
+
+				else if(isset($_GET['deactivate']) && $feed->active)
+					$feed->deactivate();
+
+				else if(isset($_GET['autostart']))
+					$feed->toggle();
+
+				return $feed;
+			}
+
+			return parent::process($object);
+		}
+
+		public function prepare()
+		{
+			$this->deactivate = $this->db->prepare('UPDATE `feeds` SET `active`=0 WHERE `name`=:name');
+			$this->activate = $this->db->prepare('UPDATE `feeds` SET `active`=1 WHERE `name`=:name');
+			$this->autostart = $this->db->prepare('UPDATE `feeds` SET `autostart`=:value WHERE `name`=:name');
+			parent::prepare();
 		}
 
 		public function getQueries()
