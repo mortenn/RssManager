@@ -11,6 +11,8 @@
 		{
 			if($data != null)
 				parent::__construct($data->getAsArray());
+			else
+				$this->new = true;
 			$this->dal = $dal;
 		}
 
@@ -69,7 +71,10 @@
 		public function save()
 		{
 			$this->uri = sprintf(RSS_URL, urlencode($this->term));
-			$this->dal->saveFeed($this);
+			if($new)
+				$this->dal->create($this);
+			else
+				$this->dal->update($this);
 		}
 
 		public function read($term = null)
@@ -126,5 +131,7 @@
 			$torrent->save();
 			return $torrent;
 		}
+
+		private $new = false;
 	}
 ?>
