@@ -53,12 +53,14 @@
 		{
 			$this->dal->activate->name = $this->name;
 			$this->dal->activate->execute();
+			$this->active = true;
 		}
 
 		public function deactivate()
 		{
 			$this->dal->deactivate->name = $this->name;
 			$this->dal->deactivate->execute();
+			$this->active = false;
 		}
 
 		public function toggle()
@@ -66,6 +68,7 @@
 			$this->dal->autostart->name = $this->name;
 			$this->dal->autostart->value = !$this->autostart;
 			$this->dal->autostart->execute();
+			$this->autostart = !$this->autostart;
 		}
 
 		public function save()
