@@ -4,7 +4,7 @@
 	require_once('lib/functions.php');
 	require_once('config.php');
 	require_once('lib/KrameWork/KrameWork/KrameSystem.php');
-	require_once('lib/simplepie_1.3.1.compiled.php');
+	require_once('lib/rss-php/src/Feed.php');
 	require_once('lib/PHP-Transmission-Class/class/TransmissionRPC.class.php');
 
 	if(isset($_SERVER['REMOTE_ADDR']) && !preg_match($allow_from, $_SERVER['REMOTE_ADDR']))

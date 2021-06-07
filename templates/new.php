@@ -16,7 +16,7 @@
 	if(isset($items))
 		foreach($items as $item)
 		{
-			$desc = $item->get_description();
+			$desc = $item->description;
 			$class = '';
 			if(preg_match('/A+/', $desc))
 				$class = ' aplus';
@@ -24,6 +24,6 @@
 				$class = ' trusted';
 			else if(preg_match('/Remake/', $desc))
 				$class = ' remake';
-			printf('<div class="hit%s">%s<br>%s: %s</div>', $class, $item->get_title(), $item->get_description(), $item->get_permalink());
+			printf('<div class="hit%s">%s<br>%s: %s</div>', $class, $item->title, $item->description, $item->url);
 		}
 ?>

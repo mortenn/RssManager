@@ -107,7 +107,7 @@
 				$feed = $schema->feeds->getFeed('.');
 				if($feed == null)
 				{
-					$feed = new Feed($schema->feeds);
+					$feed = new TorrentFeed($schema->feeds);
 					$feed->name = '.';
 					$feed->term = null;
 					$feed->active = false;

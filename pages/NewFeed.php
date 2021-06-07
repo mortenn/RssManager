@@ -10,7 +10,7 @@
 		{
 			if($_SERVER['REQUEST_METHOD'] == 'POST')
 			{
-				$feed = new Feed($this->schema->feeds);
+				$feed = new TorrentFeed($this->schema->feeds);
 				$feed->name = $_POST['name'];
 				$feed->term = $_POST['term'];
 				$feed->active = true;
@@ -23,7 +23,7 @@
 			if(isset($_GET['term']))
 			{
 				$template->term = $_GET['term'];
-				$template->items = Feed::Search($_GET['term']);
+				$template->items = TorrentFeed::Search($_GET['term']);
 			}
 			return $template;
 		}

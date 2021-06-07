@@ -14,5 +14,5 @@ Feed for <?php echo $feed->name; ?>:<br>
 	$items = $feed->read();
 	if(is_array($items))
 		foreach($items as $item)
-			printf('%s<br>%s: %s<br>', $item->get_title(), $item->get_description(), $item->get_permalink());
+			printf('%s<br>%s: %s<br>', $item->title, $item->description, $item->url);
 ?>

@@ -4,3 +4,6 @@
 [submodule "lib/PHP-Transmission-Class"]
 	path = lib/PHP-Transmission-Class
 	url = https://github.com/brycied00d/PHP-Transmission-Class.git
+[submodule "lib/rss-php"]
+	path = lib/rss-php
+	url = https://github.com/dg/rss-php

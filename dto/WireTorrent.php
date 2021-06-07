@@ -3,8 +3,8 @@
 	{
 		public function __construct($data)
 		{
-			$this->uri = $data->get_permalink();
-			$this->title = $data->get_title();
+			$this->uri = $data->uri;
+			$this->title = $data->title;
 		}
 
 		public function get_permalink()

@@ -12,7 +12,7 @@
 	if($theme)
 	{
 ?>
-		<link rel="stylesheet" href="https://bootswatch.com/<?php echo $theme; ?>/bootstrap.min.css">
+		<link rel="stylesheet" href="https://bootswatch.com/3/<?php echo $theme; ?>/bootstrap.min.css">
 <?php
 	}
 	else
@@ -53,7 +53,7 @@
 	{
 ?>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="<?php echo $transmission; ?>" target="_blank"><img src="<?php echo $transmission; ?>images/favicon.png"></a></li>
+						<li><a href="<?php echo $transmission; ?>" target="_blank"><img style="height:20px;width:20px;" src="/favicon.png"></a></li>
 					</ul>
 <?php
 	}

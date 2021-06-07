@@ -1,5 +1,6 @@
 #!/usr/bin/php
 <?php
+	chdir(__DIR__);
 	require('bootstrap.php');
 	$active = array();
 	$autostart = array();

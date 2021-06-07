@@ -41,7 +41,7 @@
 ?>
 					</div>
 					<div class="row">
-						<span class="feed-url"><?php echo $feed->uri; ?></span>
+						<span class="feed-url"><?php echo $feed->url; ?></span>
 					</div>
 				</div>
 				<div class="col-md-2">

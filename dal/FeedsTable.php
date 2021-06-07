@@ -25,7 +25,7 @@ INSERT INTO feeds (`name`,`uri`,`term`,`active`) VALUES (:name,:uri,:term,:activ
 			$this->get->execute();
 			$result = $this->get->getRows();
 			if(count($result) == 1)
-				return new Feed($this, $result[0]);
+				return new TorrentFeed($this, $result[0]);
 			return null;
 		}
 
@@ -33,7 +33,7 @@ INSERT INTO feeds (`name`,`uri`,`term`,`active`) VALUES (:name,:uri,:term,:activ
 		{
 			$feeds = array();
 			foreach($this->loadActive->getRows() as $feed)
-				$feeds[] = new Feed($this, $feed);
+				$feeds[] = new TorrentFeed($this, $feed);
 			return $feeds;
 		}
 
@@ -41,7 +41,7 @@ INSERT INTO feeds (`name`,`uri`,`term`,`active`) VALUES (:name,:uri,:term,:activ
 		{
 			$feeds = array();
 			foreach($this->loadInactive->getRows() as $feed)
-				$feeds[] = new Feed($this, $feed);
+				$feeds[] = new TorrentFeed($this, $feed);
 			return $feeds;
 		}
 
@@ -50,7 +50,7 @@ INSERT INTO feeds (`name`,`uri`,`term`,`active`) VALUES (:name,:uri,:term,:activ
 			$feeds = array();
 			$this->search->query = '%'.trim($query).'%';
 			foreach($this->search->getRows() as $feed)
-				$feeds[] = new Feed($this, $feed);
+				$feeds[] = new TorrentFeed($this, $feed);
 			return $feeds;
 		}
 

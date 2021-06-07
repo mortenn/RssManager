@@ -12,7 +12,7 @@
 			if(isset($_GET['term']))
 			{
 				$template->term = $_GET['term'];
-				$template->items = Feed::Search($_GET['term']);
+				$template->items = TorrentFeed::Search($_GET['term']);
 			}
 			return $template;
 		}
